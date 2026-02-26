@@ -3,80 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Web con Redis</title>
+    <title>Boda Ainhoa y Víctor</title>
+    <!-- Importamos una fuente clásica y elegante de Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; padding: 50px; background: #f4f4f9; }
-        .card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; text-align: center; }
-        input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; margin-bottom: 5px; cursor: pointer; border: none; border-radius: 5px; color: white; transition: 0.3s; }
-        #btnGuardar { background: #2ea44f; }
-        #btnLeer { background: #24292e; }
-        button:hover { opacity: 0.8; }
-        #resultado { margin-top: 15px; font-size: 0.9rem; color: #555; min-height: 1.2em; }
+        :root {
+            --color-beige: #f5f5dc;
+            --color-crema: #fffaf0;
+            --color-dorado: #b8860b;
+            --color-texto: #5d4037;
+            --color-boton: #8d6e63;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--color-beige);
+            color: var(--color-texto);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--color-crema);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            border: 1px solid rgba(184, 134, 11, 0.2);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--color-dorado);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-dorado);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: white;
+            font-size: 1rem;
+            color: var(--color-texto);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--color-dorado);
+            box-shadow: 0 0 5px rgba(184, 134, 11, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 30px; /* Bordes más suaves */
+            border: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save {
+            background-color: var(--color-dorado);
+            color: white;
+        }
+
+        .btn-read {
+            background-color: transparent;
+            color: var(--color-dorado);
+            border: 1px solid var(--color-dorado);
+        }
+
+        button:hover {
+            opacity: 0.8;
+            transform: translateY(-1px);
+        }
+
+        #resultado {
+            margin-top: 25px;
+            padding: 15px;
+            font-style: italic;
+            border-top: 1px solid #eee;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h3>Registro Redis</h3>
-    <input type="text" id="nombreInput" placeholder="Escribe un nombre">
+<div class="container">
+    <h1>Boda Ainhoa y Víctor</h1>
     
-    <button id="btnGuardar">Guardar en Redis</button>
-    <button id="btnLeer">Consultar último</button>
-    
-    <p id="resultado">Esperando acción...</p>
+    <label for="nombreInput">Nombre</label>
+    <input type="text" id="nombreInput" placeholder="Tu nombre">
+
+    <label for="apellidoInput">Apellidos</label>
+    <input type="text" id="apellidoInput" placeholder="Tus apellidos">
+
+    <label for="numInput">Número de acompañantes</label>
+    <input type="number" id="numInput" value="0" min="0">
+
+    <label for="alergiaInput">¿Tienes alguna alergia?</label>
+    <input type="text" id="alergiaInput" placeholder="Indícalo aquí">
+
+    <label for="comentarioInput">Haz un comentario sobre la fundación A la par</label>
+    <textarea id="comentarioInput" placeholder="Escribe tu mensaje..."></textarea>
+
+    <div class="button-group">
+        <button class="btn-save" onclick="guardarRegistro()">Confirmar Asistencia</button>
+        <button class="btn-read" onclick="consultarRegistro()">Ver mi confirmación</button>
+    </div>
+
+    <div id="resultado">Será un placer contar con vosotros.</div>
 </div>
 
-<!-- IMPORTANTE: type="module" para usar 'import' -->
-<script type="module">
-    // Usamos el CDN de Skypack o esm.sh que son compatibles con el navegador
-    import { Redis } from 'https://cdn.skypack.dev';
+<script>
+    // --- Lógica Intacta ---
+    const UPSTASH_URL = "https://glad-lizard-60703.upstash.io";
+    const UPSTASH_TOKEN = "Ae0fAAIncDE4YjZlNGY4ZTYzMDE0ZGVjODcwZmE0NGRiNmY2NzJmNHAxNjA3MDM";
 
-    // Configuración de tu base de datos
-    const redis = new Redis({
-      url: 'https://glad-lizard-60703.upstash.io',
-      token: 'Ae0fAAIncDE4YjZlNGY4ZTYzMDE0ZGVjODcwZmE0NGRiNmY2NzJmNHAxNjA3MDM', // <--- ¡ASEGÚRATE DE CAMBIAR ESTO!
-    });
+    async function guardarRegistro() {
+        const nombre = document.getElementById('nombreInput').value.trim();
+        const apellido = document.getElementById('apellidoInput').value.trim();
+        const num = document.getElementById('numInput').value.trim();
+        const alergia = document.getElementById('alergiaInput').value.trim();
+        const comentario = document.getElementById('comentarioInput').value.trim();
+        const display = document.getElementById('resultado');
 
-    const input = document.getElementById('nombreInput');
-    const display = document.getElementById('resultado');
-
-    // Manejador del botón GUARDAR
-    document.getElementById('btnGuardar').addEventListener('click', async () => {
-        const nombre = input.value.trim();
-        
-        if (!nombre) {
-            display.innerText = "⚠️ Por favor, escribe algo.";
+        if (!nombre || !apellido) {
+            alert("Por favor, introduce al menos Nombre y Apellido.");
             return;
         }
 
-        try {
-            display.innerText = "⏳ Guardando...";
-            await redis.set("usuario_actual", nombre);
-            display.innerText = "✅ ¡" + nombre + " guardado!";
-            input.value = ""; // Limpiar input
-        } catch (error) {
-            console.error(error);
-            display.innerText = "❌ Error al guardar.";
-        }
-    });
+        const redisKey = `${nombre}_${apellido}`;
+        const datos = {
+            acompañantes: num || "0",
+            alergias: alergia || "Ninguna",
+            comentarios: comentario || "Sin comentarios"
+        };
 
-    // Manejador del botón LEER
-    document.getElementById('btnLeer').addEventListener('click', async () => {
+        display.innerText = "⏳ Enviando confirmación...";
+
         try {
-            display.innerText = "⏳ Leyendo...";
-            const data = await redis.get("usuario_actual");
+            const url = `${UPSTASH_URL}/set/${encodeURIComponent(redisKey)}/${encodeURIComponent(JSON.stringify(datos))}`;
+            const respuesta = await fetch(url, { headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` } });
+            await respuesta.json();
+            display.innerHTML = `✨ <b>¡Confirmación enviada!</b><br>Gracias por compartir este día con nosotros.`;
+            document.querySelectorAll('input, textarea').forEach(el => { if(el.type === "number") el.value = "0"; else el.value = ""; });
+        } catch (error) {
+            display.innerText = "❌ Hubo un problema con el envío.";
+        }
+    }
+
+    async function consultarRegistro() {
+        const nombre = document.getElementById('nombreInput').value.trim();
+        const apellido = document.getElementById('apellidoInput').value.trim();
+        const display = document.getElementById('resultado');
+
+        if (!nombre || !apellido) {
+            alert("Escribe Nombre y Apellido para buscar.");
+            return;
+        }
+
+        const redisKey = `${nombre}_${apellido}`;
+        display.innerText = "⏳ Buscando en la lista...";
+
+        try {
+            const url = `${UPSTASH_URL}/get/${encodeURIComponent(redisKey)}`;
+            const respuesta = await fetch(url, { headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` } });
+            const data = await respuesta.json();
             
-            if (data) {
-                display.innerText = "👤 Último nombre: " + data;
+            if (data.result) {
+                const info = JSON.parse(data.result);
+                display.innerHTML = `
+                    <b>Confirmación encontrada:</b><br>
+                    👤 <b>${nombre} ${apellido}</b><br>
+                    👫 Acompañantes: ${info.acompañantes}<br>
+                    ⚠️ Alergias: ${info.alergias}<br>
+                    💬 Comentarios: ${info.comentarios}
+                `;
             } else {
-                display.innerText = "📭 No hay datos en Redis.";
+                display.innerText = "📭 No hemos encontrado ninguna confirmación con ese nombre.";
             }
         } catch (error) {
-            console.error(error);
-            display.innerText = "❌ Error al leer.";
+            display.innerText = "❌ Error al consultar la base de datos.";
         }
-    });
+    }
 </script>
 
 </body>
