@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Web en GitHub Pages</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2ea44f; } /* Color verde GitHub */
+        p { font-size: 1.2rem; }
+        .badge {
+            display: inline-block;
+            background: #24292e;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 ¡Mi página está viva!</h1>
+        <p>Este es mi primer sitio web alojado con éxito en <strong>GitHub Pages</strong>.</p>
+        <hr>
+        <p>Si estás viendo esto, significa que el despliegue funcionó correctamente.</p>
+        <a href="https://github.com" class="badge">Creado con GitHub</a>
+    </div>
+</body>
+</html>
