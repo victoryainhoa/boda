@@ -42,5 +42,32 @@
         <p>Si estás viendo esto, significa que el despliegue funcionó correctamente.</p>
         <a href="https://github.com" class="badge">Creado con GitHub</a>
     </div>
+    <!-- Botones en tu HTML -->
+<button onclick="guardarDato()">Guardar en Redis</button>
+<button onclick="leerDato()">Leer de Redis</button>
+<p id="resultado">Esperando acción...</p>
+
+<script>
+    const UPSTASH_URL = "https://glad-lizard-60703.upstash.io";
+    const UPSTASH_TOKEN = "Ae0fAAIncDE4YjZlNGY4ZTYzMDE0ZGVjODcwZmE0NGRiNmY2NzJmNHAxNjA3MDM";
+
+    // Función para ENVIAR datos (SET)
+    async function guardarDato() {
+        const respuesta = await fetch(`${UPSTASH_URL}/set/usuario/VictoriaAinhoa`, {
+            headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` }
+        });
+        const data = await respuesta.json();
+        document.getElementById('resultado').innerText = "Guardado: " + data.result;
+    }
+
+    // Función para LEER datos (GET)
+    async function leerDato() {
+        const respuesta = await fetch(`${UPSTASH_URL}/get/usuario`, {
+            headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` }
+        });
+        const data = await respuesta.json();
+        document.getElementById('resultado').innerText = "Valor en Redis: " + data.result;
+    }
+</script>
 </body>
 </html>
