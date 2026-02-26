@@ -13,23 +13,29 @@
     <meta property="og:url" content="https://tu-usuario.github.io">
     <meta property="og:type" content="website">
 
-<!-- Twitter Card (opcional, por si se comparte ahí) -->
-<meta name="twitter:card" content="summary_large_image">
+    <!-- Twitter Card (opcional, por si se comparte ahí) -->
+    <meta name="twitter:card" content="summary_large_image">
     <title>Boda Ainhoa y Víctor</title>
+    
+    <!-- Fuentes elegantes -->
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     
     <style>
         :root {
-            --color-beige: #f5f5dc;
-            --color-crema: #fffaf0;
-            --color-dorado: #b8860b;
-            --color-texto: #5d4037;
+            --color-verde: #2d4a41; /* Verde bosque elegante */
+            --color-dorado: #c5a059; /* Dorado otoñal */
+            --color-crema: rgba(255, 250, 240, 0.95); /* Crema con transparencia */
+            --color-texto: #333333;
         }
 
         body {
             font-family: 'Lato', sans-serif;
-            background-color: var(--color-beige);
-            color: var(--color-texto);
+            /* IMAGEN DE FONDO */
+            background-image: url('fondo.JPG');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #e0e0e0; /* Fallback */
             margin: 0;
             display: flex;
             justify-content: center;
@@ -40,85 +46,98 @@
 
         .container {
             background: var(--color-crema);
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 50px 40px;
+            border-radius: 2px; /* Estilo papel invitación clásica */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             width: 100%;
-            max-width: 450px;
+            max-width: 420px;
             text-align: center;
-            border: 1px solid rgba(184, 134, 11, 0.2);
-            transition: opacity 0.5s ease;
+            border: 1px solid var(--color-dorado);
+            position: relative;
+            outline: 10px solid var(--color-crema);
+            outline-offset: -20px;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
+            color: var(--color-verde);
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .fecha-boda {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
             color: var(--color-dorado);
             margin-bottom: 30px;
-            font-style: italic;
+            display: block;
+            font-size: 1.1rem;
         }
 
         label {
             display: block;
-            text-align: left;
+            text-align: center;
             margin-bottom: 8px;
-            font-weight: 400;
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--color-dorado);
+            letter-spacing: 2px;
+            color: var(--color-verde);
         }
 
-        input, textarea {
+        input {
             width: 100%;
             padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #dcdcdc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            background-color: white;
+            margin-bottom: 25px;
+            border: none;
+            border-bottom: 1px solid var(--color-dorado);
+            background-color: transparent;
             font-size: 1rem;
             color: var(--color-texto);
+            text-align: center;
+            transition: all 0.3s;
         }
 
-        textarea {
-            resize: vertical;
-            height: 80px;
+        input:focus {
+            outline: none;
+            border-bottom: 1px solid var(--color-verde);
         }
 
         .btn-save {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             cursor: pointer;
-            border-radius: 30px;
-            border: none;
+            border-radius: 0; /* Botón cuadrado elegante */
+            border: 1px solid var(--color-verde);
             font-weight: 700;
             font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            background-color: var(--color-dorado);
+            letter-spacing: 2px;
+            background-color: var(--color-verde);
             color: white;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             margin-top: 10px;
         }
 
-        button:hover {
-            opacity: 0.8;
-            transform: translateY(-1px);
+        .btn-save:hover {
+            background-color: transparent;
+            color: var(--color-verde);
         }
 
         #mensaje-final {
-            display: none; /* Oculto por defecto */
-            padding: 20px;
+            display: none;
+            padding: 30px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-style: italic;
-            color: var(--color-texto);
+            color: var(--color-verde);
             line-height: 1.6;
         }
 
         @media (max-width: 480px) {
-            h1 { font-size: 1.8rem; }
+            h1 { font-size: 2rem; }
+            .container { padding: 40px 25px; }
         }
     </style>
 </head>
@@ -126,33 +145,35 @@
 
 <div class="container" id="main-container">
     <div id="formulario-boda">
-        <h1>Boda Ainhoa y Víctor</h1>
+        <h1>Ainhoa & Víctor</h1>
+        <span class="fecha-boda">Nuestra Boda</span>
         
         <label for="nombreInput">Nombre</label>
-        <input type="text" id="nombreInput" placeholder="Tu nombre">
+        <input type="text" id="nombreInput" placeholder="Escribe tu nombre">
 
         <label for="apellidoInput">Apellidos</label>
-        <input type="text" id="apellidoInput" placeholder="Tus apellidos">
+        <input type="text" id="apellidoInput" placeholder="Escribe tus apellidos">
 
         <label for="numInput">Número de acompañantes</label>
         <input type="number" id="numInput" value="0" min="0">
 
-        <label for="alergiaInput">¿Tienes alguna alergia?</label>
+        <label for="alergiaInput">¿Alguna alergia o intolerancia?</label>
         <input type="text" id="alergiaInput" placeholder="Indícalo aquí">
 
         <button class="btn-save" id="btnEnviar" onclick="guardarRegistro()">Confirmar Asistencia</button>
     </div>
 
-    <!-- Este bloque se mostrará solo al terminar -->
     <div id="mensaje-final">
         ✨ <br>
         <b>¡Confirmación enviada!</b><br>
         Muchas gracias por compartir este día tan especial con nosotros.<br>
-        <span style="font-size: 1rem; color: var(--color-dorado);">Ainhoa & Víctor</span>
+        <br>
+        <span style="font-size: 1.2rem; color: var(--color-dorado);">Ainhoa & Víctor</span>
     </div>
 </div>
 
 <script>
+    /* Lógica intacta */
     const UPSTASH_URL = "https://glad-lizard-60703.upstash.io";
     const UPSTASH_TOKEN = "Ae0fAAIncDE4YjZlNGY4ZTYzMDE0ZGVjODcwZmE0NGRiNmY2NzJmNHAxNjA3MDM";
 
@@ -182,7 +203,6 @@
             const respuesta = await fetch(url, { headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` } });
             
             if (respuesta.ok) {
-                // EFECTO: Ocultar formulario y mostrar mensaje de éxito
                 document.getElementById('formulario-boda').style.display = 'none';
                 document.getElementById('mensaje-final').style.display = 'block';
             } else {
