@@ -140,9 +140,6 @@
         <label for="alergiaInput">¿Tienes alguna alergia?</label>
         <input type="text" id="alergiaInput" placeholder="Indícalo aquí">
 
-        <label for="comentarioInput">Haz un comentario sobre la fundación A la par</label>
-        <textarea id="comentarioInput" placeholder="Escribe tu mensaje..."></textarea>
-
         <button class="btn-save" id="btnEnviar" onclick="guardarRegistro()">Confirmar Asistencia</button>
     </div>
 
@@ -164,7 +161,6 @@
         const apellido = document.getElementById('apellidoInput').value.trim();
         const num = document.getElementById('numInput').value.trim();
         const alergia = document.getElementById('alergiaInput').value.trim();
-        const comentario = document.getElementById('comentarioInput').value.trim();
         const btn = document.getElementById('btnEnviar');
 
         if (!nombre || !apellido) {
@@ -178,8 +174,7 @@
         const redisKey = `${nombre}_${apellido}`;
         const datos = {
             acompañantes: num || "0",
-            alergias: alergia || "Ninguna",
-            comentarios: comentario || "Sin comentarios"
+            alergias: alergia || "Ninguna"
         };
 
         try {
