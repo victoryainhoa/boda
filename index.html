@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Configuración de Vista Previa para WhatsApp -->
+    <!-- Meta etiquetas de WhatsApp (Sin cambios) -->
     <meta property="og:title" content="Boda Ainhoa y Víctor">
     <meta property="og:description" content="Nos haría mucha ilusión que nos acompañaras en este día tan especial. Confirma tu asistencia aquí.">
     <meta property="og:image" content="https://victoryainhoa.github.io">
@@ -13,7 +13,6 @@
     <meta property="og:url" content="https://tu-usuario.github.io">
     <meta property="og:type" content="website">
 
-    <meta name="twitter:card" content="summary_large_image">
     <title>Boda Ainhoa y Víctor</title>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     
@@ -21,7 +20,7 @@
         :root {
             --color-verde: #2d4a41;
             --color-dorado: #c5a059;
-            --color-crema: rgba(255, 250, 240, 0.92); /* Un poco más de transparencia para ver el fondo */
+            --color-crema: rgba(255, 250, 240, 0.92);
             --color-texto: #333333;
         }
 
@@ -34,34 +33,35 @@
             align-items: center;
             min-height: 100vh;
             
-            /* AJUSTE DE DIMENSIONES DE LA FOTO */
+            /* AJUSTE PARA VER LA IMAGEN 800x800 ENTERA */
             background-image: url('fondo.webp');
             background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover; /* La imagen cubre toda la pantalla siempre */
-            background-attachment: fixed; /* La imagen se queda quieta al hacer scroll */
+            background-position: center;
+            background-size: contain; /* Garantiza que se vea toda la imagen sin recortar */
+            background-attachment: fixed;
+            /* Color de fondo que combine con tu imagen para llenar los huecos */
+            background-color: #fdfcf9; 
         }
 
         .container {
             background: var(--color-crema);
-            padding: 50px 40px;
+            padding: 40px 30px;
             border-radius: 2px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            width: 90%; /* Ajuste para móviles */
-            max-width: 420px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 380px; /* Un poco más estrecho para que encaje mejor sobre el fondo 800x800 */
             text-align: center;
             border: 1px solid var(--color-dorado);
             position: relative;
-            outline: 10px solid var(--color-crema);
-            outline-offset: -20px;
-            margin: 20px;
+            outline: 8px solid var(--color-crema);
+            outline-offset: -15px;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--color-verde);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-weight: 400;
         }
 
@@ -69,17 +69,17 @@
             font-family: 'Playfair Display', serif;
             font-style: italic;
             color: var(--color-dorado);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             display: block;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         label {
             display: block;
             text-align: center;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--color-verde);
@@ -87,8 +87,8 @@
 
         input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 25px;
+            padding: 10px;
+            margin-bottom: 20px;
             border: none;
             border-bottom: 1px solid var(--color-dorado);
             background-color: transparent;
@@ -105,18 +105,17 @@
 
         .btn-save {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             cursor: pointer;
             border-radius: 0;
             border: 1px solid var(--color-verde);
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             background-color: var(--color-verde);
             color: white;
             transition: all 0.4s ease;
-            margin-top: 10px;
         }
 
         .btn-save:hover {
@@ -126,17 +125,19 @@
 
         #mensaje-final {
             display: none;
-            padding: 30px;
+            padding: 20px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-style: italic;
             color: var(--color-verde);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
+        /* Ajuste para pantallas muy pequeñas */
         @media (max-width: 480px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 40px 20px; }
+            h1 { font-size: 1.8rem; }
+            .container { padding: 30px 20px; }
+            body { background-size: 100% auto; } /* En móvil se ajusta al ancho */
         }
     </style>
 </head>
@@ -167,11 +168,12 @@
         <b>¡Confirmación enviada!</b><br>
         Muchas gracias por compartir este día tan especial con nosotros.<br>
         <br>
-        <span style="font-size: 1.2rem; color: var(--color-dorado);">Ainhoa & Víctor</span>
+        <span style="font-size: 1.1rem; color: var(--color-dorado);">Ainhoa & Víctor</span>
     </div>
 </div>
 
 <script>
+    /* JavaScript intacto según lo solicitado */
     const UPSTASH_URL = "https://glad-lizard-60703.upstash.io";
     const UPSTASH_TOKEN = "Ae0fAAIncDE4YjZlNGY4ZTYzMDE0ZGVjODcwZmE0NGRiNmY2NzJmNHAxNjA3MDM";
 
