@@ -6,56 +6,55 @@
     <!-- Configuración de Vista Previa para WhatsApp -->
     <meta property="og:title" content="Boda Ainhoa y Víctor">
     <meta property="og:description" content="Nos haría mucha ilusión que nos acompañaras en este día tan especial. Confirma tu asistencia aquí.">
-    <meta property="og:image" content="https://victoryainhoa.github.io/boda/imagen.webp">
+    <meta property="og:image" content="https://victoryainhoa.github.io">
     <meta property="og:image:type" content="image/webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://tu-usuario.github.io">
     <meta property="og:type" content="website">
 
-    <!-- Twitter Card (opcional, por si se comparte ahí) -->
     <meta name="twitter:card" content="summary_large_image">
     <title>Boda Ainhoa y Víctor</title>
-    
-    <!-- Fuentes elegantes -->
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     
     <style>
         :root {
-            --color-verde: #2d4a41; /* Verde bosque elegante */
-            --color-dorado: #c5a059; /* Dorado otoñal */
-            --color-crema: rgba(255, 250, 240, 0.95); /* Crema con transparencia */
+            --color-verde: #2d4a41;
+            --color-dorado: #c5a059;
+            --color-crema: rgba(255, 250, 240, 0.92); /* Un poco más de transparencia para ver el fondo */
             --color-texto: #333333;
         }
 
         body {
             font-family: 'Lato', sans-serif;
-            /* IMAGEN DE FONDO */
-            background-image: url('fondo.JPG');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-color: #e0e0e0; /* Fallback */
             margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            
+            /* AJUSTE DE DIMENSIONES DE LA FOTO */
+            background-image: url('fondo.webp');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover; /* La imagen cubre toda la pantalla siempre */
+            background-attachment: fixed; /* La imagen se queda quieta al hacer scroll */
         }
 
         .container {
             background: var(--color-crema);
             padding: 50px 40px;
-            border-radius: 2px; /* Estilo papel invitación clásica */
+            border-radius: 2px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            width: 100%;
+            width: 90%; /* Ajuste para móviles */
             max-width: 420px;
             text-align: center;
             border: 1px solid var(--color-dorado);
             position: relative;
             outline: 10px solid var(--color-crema);
             outline-offset: -20px;
+            margin: 20px;
         }
 
         h1 {
@@ -96,7 +95,7 @@
             font-size: 1rem;
             color: var(--color-texto);
             text-align: center;
-            transition: all 0.3s;
+            box-sizing: border-box;
         }
 
         input:focus {
@@ -108,7 +107,7 @@
             width: 100%;
             padding: 16px;
             cursor: pointer;
-            border-radius: 0; /* Botón cuadrado elegante */
+            border-radius: 0;
             border: 1px solid var(--color-verde);
             font-weight: 700;
             font-size: 0.9rem;
@@ -137,7 +136,7 @@
 
         @media (max-width: 480px) {
             h1 { font-size: 2rem; }
-            .container { padding: 40px 25px; }
+            .container { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -149,10 +148,10 @@
         <span class="fecha-boda">Nuestra Boda</span>
         
         <label for="nombreInput">Nombre</label>
-        <input type="text" id="nombreInput" placeholder="Escribe tu nombre">
+        <input type="text" id="nombreInput" placeholder="Tu nombre">
 
         <label for="apellidoInput">Apellidos</label>
-        <input type="text" id="apellidoInput" placeholder="Escribe tus apellidos">
+        <input type="text" id="apellidoInput" placeholder="Tus apellidos">
 
         <label for="numInput">Número de acompañantes</label>
         <input type="number" id="numInput" value="0" min="0">
@@ -173,7 +172,6 @@
 </div>
 
 <script>
-    /* Lógica intacta */
     const UPSTASH_URL = "https://glad-lizard-60703.upstash.io";
     const UPSTASH_TOKEN = "Ae0fAAIncDE4YjZlNGY4ZTYzMDE0ZGVjODcwZmE0NGRiNmY2NzJmNHAxNjA3MDM";
 
