@@ -3,71 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Web en GitHub Pages</title>
+    <title>Mi Web con Redis</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-            background-color: #f4f4f9;
-        }
-        .container {
-            background: white;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        h1 { color: #2ea44f; } /* Color verde GitHub */
-        p { font-size: 1.2rem; }
-        .badge {
-            display: inline-block;º
-            background: #24292e;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            text-decoration: none;
-            margin-top: 1rem;
-        }
+        body { font-family: sans-serif; display: flex; justify-content: center; padding: 50px; background: #f4f4f9; }
+        .card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; margin-bottom: 5px; cursor: pointer; border: none; border-radius: 5px; color: white; transition: 0.3s; }
+        #btnGuardar { background: #2ea44f; }
+        #btnLeer { background: #24292e; }
+        button:hover { opacity: 0.8; }
+        #resultado { margin-top: 15px; font-size: 0.9rem; color: #555; min-height: 1.2em; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🚀 ¡Mi página está viva!</h1>
-        <p>Este es mi primer sitio web alojado con éxito en <strong>GitHub Pages</strong>.</p>
-        <hr>
-        <p>Si estás viendo esto, significa que el despliegue funcionó correctamente.</p>
-        <a href="https://github.com" class="badge">Creado con GitHub</a>
-    </div>
-    <!-- Botones en tu HTML -->
-<button onclick="guardarDato()">Guardar en Redis</button>
-<button onclick="leerDato()">Leer de Redis</button>
-<p id="resultado">Esperando acción...</p>
 
-<script>
-    const UPSTASH_URL = "https://glad-lizard-60703.upstash.io";
-    const UPSTASH_TOKEN = "Ae0fAAIncDE4YjZlNGY4ZTYzMDE0ZGVjODcwZmE0NGRiNmY2NzJmNHAxNjA3MDM";
+<div class="card">
+    <h3>Registro Redis</h3>
+    <input type="text" id="nombreInput" placeholder="Escribe un nombre">
+    
+    <button id="btnGuardar">Guardar en Redis</button>
+    <button id="btnLeer">Consultar último</button>
+    
+    <p id="resultado">Esperando acción...</p>
+</div>
 
-    // Función para ENVIAR datos (SET)
-    async function guardarDato() {
-        const respuesta = await fetch(`${UPSTASH_URL}/set/usuario/VictoriaAinhoa`, {
-            headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` }
-        });
-        const data = await respuesta.json();
-        document.getElementById('resultado').innerText = "Guardado: " + data.result;
-    }
+<!-- IMPORTANTE: type="module" para usar 'import' -->
+<script type="module">
+    // Usamos el CDN de Skypack o esm.sh que son compatibles con el navegador
+    import { Redis } from 'https://cdn.skypack.dev';
 
-    // Función para LEER datos (GET)
-    async function leerDato() {
-        const respuesta = await fetch(`${UPSTASH_URL}/get/usuario`, {
-            headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` }
-        });
-        const data = await respuesta.json();
-        document.getElementById('resultado').innerText = "Valor en Redis: " + data.result;
-    }
+    // Configuración de tu base de datos
+    const redis = new Redis({
+      url: 'https://glad-lizard-60703.upstash.io',
+      token: 'Ae0fAAIncDE4YjZlNGY4ZTYzMDE0ZGVjODcwZmE0NGRiNmY2NzJmNHAxNjA3MDM', // <--- ¡ASEGÚRATE DE CAMBIAR ESTO!
+    });
+
+    const input = document.getElementById('nombreInput');
+    const display = document.getElementById('resultado');
+
+    // Manejador del botón GUARDAR
+    document.getElementById('btnGuardar').addEventListener('click', async () => {
+        const nombre = input.value.trim();
+        
+        if (!nombre) {
+            display.innerText = "⚠️ Por favor, escribe algo.";
+            return;
+        }
+
+        try {
+            display.innerText = "⏳ Guardando...";
+            await redis.set("usuario_actual", nombre);
+            display.innerText = "✅ ¡" + nombre + " guardado!";
+            input.value = ""; // Limpiar input
+        } catch (error) {
+            console.error(error);
+            display.innerText = "❌ Error al guardar.";
+        }
+    });
+
+    // Manejador del botón LEER
+    document.getElementById('btnLeer').addEventListener('click', async () => {
+        try {
+            display.innerText = "⏳ Leyendo...";
+            const data = await redis.get("usuario_actual");
+            
+            if (data) {
+                display.innerText = "👤 Último nombre: " + data;
+            } else {
+                display.innerText = "📭 No hay datos en Redis.";
+            }
+        } catch (error) {
+            console.error(error);
+            display.innerText = "❌ Error al leer.";
+        }
+    });
 </script>
+
 </body>
 </html>
