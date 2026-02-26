@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boda Ainhoa y Víctor</title>
-    <!-- Importamos una fuente clásica y elegante de Google Fonts -->
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <style>
         :root {
@@ -12,7 +11,6 @@
             --color-crema: #fffaf0;
             --color-dorado: #b8860b;
             --color-texto: #5d4037;
-            --color-boton: #8d6e63;
         }
 
         body {
@@ -36,6 +34,7 @@
             max-width: 450px;
             text-align: center;
             border: 1px solid rgba(184, 134, 11, 0.2);
+            transition: opacity 0.5s ease;
         }
 
         h1 {
@@ -69,46 +68,25 @@
             color: var(--color-texto);
         }
 
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--color-dorado);
-            box-shadow: 0 0 5px rgba(184, 134, 11, 0.1);
-        }
-
         textarea {
             resize: vertical;
             height: 80px;
         }
 
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        button {
+        .btn-save {
             width: 100%;
             padding: 15px;
             cursor: pointer;
-            border-radius: 30px; /* Bordes más suaves */
+            border-radius: 30px;
             border: none;
             font-weight: 700;
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-save {
             background-color: var(--color-dorado);
             color: white;
-        }
-
-        .btn-read {
-            background-color: transparent;
-            color: var(--color-dorado);
-            border: 1px solid var(--color-dorado);
+            transition: all 0.3s ease;
+            margin-top: 10px;
         }
 
         button:hover {
@@ -116,56 +94,55 @@
             transform: translateY(-1px);
         }
 
-        #resultado {
-            margin-top: 25px;
-            padding: 15px;
+        #mensaje-final {
+            display: none; /* Oculto por defecto */
+            padding: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
             font-style: italic;
-            border-top: 1px solid #eee;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            color: var(--color-texto);
+            line-height: 1.6;
         }
 
-        /* Responsive */
         @media (max-width: 480px) {
-            .container {
-                padding: 30px 20px;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Boda Ainhoa y Víctor</h1>
-    
-    <label for="nombreInput">Nombre</label>
-    <input type="text" id="nombreInput" placeholder="Tu nombre">
+<div class="container" id="main-container">
+    <div id="formulario-boda">
+        <h1>Boda Ainhoa y Víctor</h1>
+        
+        <label for="nombreInput">Nombre</label>
+        <input type="text" id="nombreInput" placeholder="Tu nombre">
 
-    <label for="apellidoInput">Apellidos</label>
-    <input type="text" id="apellidoInput" placeholder="Tus apellidos">
+        <label for="apellidoInput">Apellidos</label>
+        <input type="text" id="apellidoInput" placeholder="Tus apellidos">
 
-    <label for="numInput">Número de acompañantes</label>
-    <input type="number" id="numInput" value="0" min="0">
+        <label for="numInput">Número de acompañantes</label>
+        <input type="number" id="numInput" value="0" min="0">
 
-    <label for="alergiaInput">¿Tienes alguna alergia?</label>
-    <input type="text" id="alergiaInput" placeholder="Indícalo aquí">
+        <label for="alergiaInput">¿Tienes alguna alergia?</label>
+        <input type="text" id="alergiaInput" placeholder="Indícalo aquí">
 
-    <label for="comentarioInput">Haz un comentario sobre la fundación A la par</label>
-    <textarea id="comentarioInput" placeholder="Escribe tu mensaje..."></textarea>
+        <label for="comentarioInput">Haz un comentario sobre la fundación A la par</label>
+        <textarea id="comentarioInput" placeholder="Escribe tu mensaje..."></textarea>
 
-    <div class="button-group">
-        <button class="btn-save" onclick="guardarRegistro()">Confirmar Asistencia</button>
-        <button class="btn-read" onclick="consultarRegistro()">Ver mi confirmación</button>
+        <button class="btn-save" id="btnEnviar" onclick="guardarRegistro()">Confirmar Asistencia</button>
     </div>
 
-    <div id="resultado">Será un placer contar con vosotros.</div>
+    <!-- Este bloque se mostrará solo al terminar -->
+    <div id="mensaje-final">
+        ✨ <br>
+        <b>¡Confirmación enviada!</b><br>
+        Muchas gracias por compartir este día tan especial con nosotros.<br>
+        <span style="font-size: 1rem; color: var(--color-dorado);">Ainhoa & Víctor</span>
+    </div>
 </div>
 
 <script>
-    // --- Lógica Intacta ---
     const UPSTASH_URL = "https://glad-lizard-60703.upstash.io";
     const UPSTASH_TOKEN = "Ae0fAAIncDE4YjZlNGY4ZTYzMDE0ZGVjODcwZmE0NGRiNmY2NzJmNHAxNjA3MDM";
 
@@ -175,12 +152,15 @@
         const num = document.getElementById('numInput').value.trim();
         const alergia = document.getElementById('alergiaInput').value.trim();
         const comentario = document.getElementById('comentarioInput').value.trim();
-        const display = document.getElementById('resultado');
+        const btn = document.getElementById('btnEnviar');
 
         if (!nombre || !apellido) {
-            alert("Por favor, introduce al menos Nombre y Apellido.");
+            alert("Por favor, introduce al menos tu Nombre y Apellido.");
             return;
         }
+
+        btn.innerText = "⏳ ENVIANDO...";
+        btn.disabled = true;
 
         const redisKey = `${nombre}_${apellido}`;
         const datos = {
@@ -189,51 +169,21 @@
             comentarios: comentario || "Sin comentarios"
         };
 
-        display.innerText = "⏳ Enviando confirmación...";
-
         try {
             const url = `${UPSTASH_URL}/set/${encodeURIComponent(redisKey)}/${encodeURIComponent(JSON.stringify(datos))}`;
             const respuesta = await fetch(url, { headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` } });
-            await respuesta.json();
-            display.innerHTML = `✨ <b>¡Confirmación enviada!</b><br>Gracias por compartir este día con nosotros.`;
-            document.querySelectorAll('input, textarea').forEach(el => { if(el.type === "number") el.value = "0"; else el.value = ""; });
-        } catch (error) {
-            display.innerText = "❌ Hubo un problema con el envío.";
-        }
-    }
-
-    async function consultarRegistro() {
-        const nombre = document.getElementById('nombreInput').value.trim();
-        const apellido = document.getElementById('apellidoInput').value.trim();
-        const display = document.getElementById('resultado');
-
-        if (!nombre || !apellido) {
-            alert("Escribe Nombre y Apellido para buscar.");
-            return;
-        }
-
-        const redisKey = `${nombre}_${apellido}`;
-        display.innerText = "⏳ Buscando en la lista...";
-
-        try {
-            const url = `${UPSTASH_URL}/get/${encodeURIComponent(redisKey)}`;
-            const respuesta = await fetch(url, { headers: { Authorization: `Bearer ${UPSTASH_TOKEN}` } });
-            const data = await respuesta.json();
             
-            if (data.result) {
-                const info = JSON.parse(data.result);
-                display.innerHTML = `
-                    <b>Confirmación encontrada:</b><br>
-                    👤 <b>${nombre} ${apellido}</b><br>
-                    👫 Acompañantes: ${info.acompañantes}<br>
-                    ⚠️ Alergias: ${info.alergias}<br>
-                    💬 Comentarios: ${info.comentarios}
-                `;
+            if (respuesta.ok) {
+                // EFECTO: Ocultar formulario y mostrar mensaje de éxito
+                document.getElementById('formulario-boda').style.display = 'none';
+                document.getElementById('mensaje-final').style.display = 'block';
             } else {
-                display.innerText = "📭 No hemos encontrado ninguna confirmación con ese nombre.";
+                throw new Error("Error en la respuesta");
             }
         } catch (error) {
-            display.innerText = "❌ Error al consultar la base de datos.";
+            alert("Hubo un problema con el envío. Por favor, inténtalo de nuevo.");
+            btn.innerText = "CONFIRMAR ASISTENCIA";
+            btn.disabled = false;
         }
     }
 </script>
