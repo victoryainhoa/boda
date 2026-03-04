@@ -2,13 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta property="og:title" content="Boda Ainhoa y Víctor">
     <meta property="og:description" content="Nos haría mucha ilusión que nos acompañaras en este día tan especial. Confirma tu asistencia aquí.">
-    <meta property="og:image" content="https://victoryainhoa.github.io/boda/preview.webp">
+    <meta property="og:image" content="https://victoryainhoa.github.io/boda/preview.jpg">
     <meta property="og:image:type" content="image/webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://tu-usuario.github.io">
     <meta property="og:type" content="website">
 
@@ -19,53 +17,58 @@
         :root {
             --color-verde: #2d4a41;
             --color-dorado: #c5a059;
-            /* Transparencia ajustada al 75% para que se vea bien el fondo */
             --color-crema: rgba(255, 250, 240, 0.75);
             --color-texto: #333333;
         }
 
-        body {
-            font-family: 'Lato', sans-serif;
+        /* EVITAR SCROLL Y LÍNEAS BLANCAS */
+        html, body {
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Bloquea el scroll por completo */
+            background-color: #fdfcf9; 
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
             display: flex;
             justify-content: center;
-            /* CAMBIO CLAVE: Alineamos el contenido al final (abajo) */
-            align-items: flex-end; 
-            min-height: 100vh;
+            align-items: flex-end; /* Formulario abajo */
             
-            background-image: url('fondo2.webp');
+            background-image: url('fondo2.PNG');
             background-repeat: no-repeat;
             background-position: center;
-            background-size: contain; 
+            background-size: cover; /* Cambiado a cover para no dejar líneas blancas */
             background-attachment: fixed;
-            background-color: #fdfcf9; 
         }
 
         .container {
             background: var(--color-crema);
-            padding: 35px 30px;
+            padding: 30px 25px;
             border-radius: 2px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             width: 85%;
-            max-width: 360px;
+            max-width: 350px;
             text-align: center;
             border: 1px solid var(--color-dorado);
             position: relative;
             outline: 8px solid var(--color-crema);
             outline-offset: -15px;
             
-            /* Margen inferior para que no pegue abajo del todo */
-            margin-bottom: 140px; 
-            /* Un pequeño toque de desenfoque detrás del cuadro para que el texto se lea mejor */
-            /*backdrop-filter: blur(5px); */
+            /* ALTURA DEL FORMULARIO: Ajusta este margen para subirlo o bajarlo */
+            margin-bottom: 40px; 
+            
+            backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
+            box-sizing: border-box;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--color-verde);
+            font-size: 1.8rem;
+            color: var(--verde);
             margin-bottom: 5px;
             font-weight: 400;
         }
@@ -73,22 +76,22 @@
         label {
             display: block;
             text-align: center;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--color-verde);
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
+            padding: 8px;
+            margin-bottom: 12px;
             border: none;
             border-bottom: 1px solid var(--color-dorado);
             background-color: transparent;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--color-texto);
             text-align: center;
             box-sizing: border-box;
@@ -101,11 +104,11 @@
 
         .btn-save {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             cursor: pointer;
             border: 1px solid var(--color-verde);
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             background-color: var(--color-verde);
@@ -120,21 +123,25 @@
 
         #mensaje-final {
             display: none;
-            padding: 20px;
+            padding: 10px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-style: italic;
             color: var(--color-verde);
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
+        /* AJUSTES ESPECÍFICOS PARA MÓVIL */
         @media (max-width: 480px) {
-            h1 { font-size: 1.8rem; }
-            .container { 
-                margin-bottom: 30px; /* Un poco menos de margen en móviles */
-                width: 90%;
+            body {
+                /* Usamos cover para asegurar que la imagen llene la pantalla sin bordes */
+                background-size: cover; 
             }
-            body { background-size: 100% auto; }
+            .container { 
+                margin-bottom: 30px; /* Un poco más cerca del borde inferior en móvil */
+                padding: 25px 20px;
+            }
+            h1 { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -148,10 +155,10 @@
         <label for="apellidoInput">Apellidos</label>
         <input type="text" id="apellidoInput" placeholder="Tus apellidos">
 
-        <label for="numInput">Número de acompañantes</label>
+        <label for="numInput">Acompañantes</label>
         <input type="number" id="numInput" value="0" min="0">
 
-        <label for="alergiaInput">¿Alguna alergia o intolerancia?</label>
+        <label for="alergiaInput">¿Alergias?</label>
         <input type="text" id="alergiaInput" placeholder="Indícalo aquí">
 
         <button class="btn-save" id="btnEnviar" onclick="guardarRegistro()">Confirmar Asistencia</button>
@@ -160,9 +167,9 @@
     <div id="mensaje-final">
         ✨ <br>
         <b>¡Confirmación enviada!</b><br>
-        Muchas gracias por compartir este día tan especial con nosotros.<br>
+        Muchas gracias por acompañarnos.<br>
         <br>
-        <span style="font-size: 1.1rem; color: var(--color-dorado);">Ainhoa & Víctor</span>
+        <span style="font-size: 1rem; color: var(--color-dorado);">Ainhoa & Víctor</span>
     </div>
 </div>
 
@@ -202,7 +209,7 @@
                 throw new Error("Error en la respuesta");
             }
         } catch (error) {
-            alert("Hubo un problema con el envío. Por favor, inténtalo de nuevo.");
+            alert("Hubo un problema con el envío.");
             btn.innerText = "CONFIRMAR ASISTENCIA";
             btn.disabled = false;
         }
