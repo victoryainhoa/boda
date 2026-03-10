@@ -13,21 +13,19 @@
     <meta property="og:type" content="website">
 
     <title>Boda Ainhoa y Víctor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
     
 <style>
     /* DEFINICIÓN DE VARIABLES OTOÑALES */
     :root {
-        --color-verde-bosque: #2d4a41;
-        --color-dorado-viejo: #c5a059;
+        --color-verde-bosque: #2d4a41; /* El verde de las hojas */
+        --color-dorado-viejo: #c5a059; /* El dorado apagado */
         
-        /* Ocre semi-transparente para el fondo del formulario */
-        --color-fondo-formulario: rgba(139, 108, 66, 0.4); 
+        /* NUEVO: Un ocre semi-transparente para el fondo del formulario */
+        --color-fondo-formulario: rgba(139, 108, 66, 0.4); /* Un marrón suave muy transparente */
         
         --color-texto-oscuro: #333333;
-        --color-crema-suave: #fffcf4;
+        --color-crema-suave: #fffcf4; /* Para contrastes suaves */
     }
 
     /* ESTILOS GENERALES Y ELIMINACIÓN DE FLEXBOX */
@@ -36,17 +34,14 @@
         padding: 0;
         width: 100%;
         height: 100%;
-        /* overflow: hidden; */
+        /* overflow: hidden; */ /* Mantenemos el scroll permitido */
         background-color: #fdfcf9; 
     }
 
     body {
-        /* ¡¡NUEVA FUENTE!! Lora para el cuerpo del formulario */
-        font-family: 'Lora', serif; 
+        font-family: 'Lato', sans-serif; /* Usamos Lato para máxima legibilidad en textos pequeños */
         line-height: 1.6;
         color: var(--color-texto-oscuro);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
     }
 
     /* CONTENEDOR PRINCIPAL CON EL FONDO */
@@ -64,27 +59,39 @@
         justify-content: center; 
         align-items: flex-start; 
         
-        padding-top: 50px; 
+        padding-top: 50px; /* Un poco de padding arriba para que no pegue al borde superior de la imagen */
         box-sizing: border-box;
     }
 
-    /* CONTENEDOR DEL FORMULARIO - OTOÑAL Y SUAVE */
+    /* CONTENEDOR DEL FORMULARIO - REDISEÑADO OTOÑAL Y SUAVE */
     .container {
+        /* ¡¡NUEVO FONDO!! Ocre semi-transparente */
         background: var(--color-fondo-formulario);
         
-        padding: 40px 35px; /* Un poco más de padding */
+        padding: 35px 30px;
+        
+        /* ¡¡NUEVO RADIUS!! Esquinas mucho más redondeadas */
         border-radius: 20px; 
         
-        box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
-        width: 90%;
-        max-width: 400px; /* Un poco más ancho */
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15); /* Sombra más suave y extendida */
+        width: 85%;
+        max-width: 380px; /* Un poco más ancho para equilibrar */
         text-align: center;
-        border: 1px solid rgba(197, 160, 89, 0.5); 
+        
+        /* Bordes suavizados */
+        border: 1px solid rgba(197, 160, 89, 0.5); /* Dorado viejo semi-transparente */
+        
         position: relative; 
         
+        /* Eliminamos la outline decorativa dura que no combina con lo suave */
+        /* outline: 8px solid var(--color-crema); */
+        /* outline-offset: -15px; */
+        
+        /* Mantenemos el posicionamiento horizontal y vertical con márgenes */
         margin-top: 550px; /* Ajusta este valor para situar el formulario exactamente debajo del texto del fondo */
         margin-bottom: 70px; 
         
+        /* Efecto de cristal difuminado detrás */
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         box-sizing: border-box;
@@ -92,45 +99,41 @@
 
     /* TÍTULO DEL FORMULARIO - TIPOGRAFÍA SERIF ELEGANTE */
     h1 {
-        /* Usamos Playfair Display para títulos */
+        /* Usamos Playfair Display ( Serif ) para títulos */
         font-family: 'Playfair Display', serif;
-        font-size: 2.1rem; /* Un poco más grande y distinguida */
+        font-size: 1.9rem;
         color: var(--color-verde-bosque);
         margin-top: 0;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         font-weight: 700;
-        line-height: 1.1;
+        line-height: 1.2;
     }
 
-    /* ESTILOS DE FORMULARIO - ELEGANTES Y LEGIBLES */
+    /* ESTILOS DE FORMULARIO - SUAVES Y LEGIBLES */
     .form-group {
-        margin-bottom: 22px;
-        text-align: left; /* Etiquetas a la izquierda para mejor legibilidad con serif */
+        margin-bottom: 20px;
+        text-align: left; /* Etiquetas a la izquierda para mejor legibilidad */
     }
 
     label {
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 7px;
         font-weight: 700;
-        
-        /* Ajustamos para Lora: un poco menos mayúscula dura y más refinada */
-        font-size: 0.8rem; 
-        text-transform: capitalize; /* Cambiado a Capitalize para más elegancia */
-        letter-spacing: 1px;
-        
+        font-size: 0.75rem; /* Un poco más grande */
+        text-transform: uppercase;
+        letter-spacing: 2px;
         color: var(--color-verde-bosque);
     }
 
     input {
         width: 100%;
-        padding: 13px 15px; /* Más padding */
+        padding: 12px; /* Más padding para suavidad */
         
-        border: 1px solid rgba(0,0,0,0.08); /* Borde sutil */
-        border-radius: 8px; 
-        background-color: rgba(255, 255, 255, 0.4); 
+        /* ¡¡NUEVO FONDO Y BORDE!! Transparentes y suaves */
+        border: 1px solid rgba(0,0,0,0.1); /* Borde sutil */
+        border-radius: 8px; /* Esquinas redondeadas */
+        background-color: rgba(255, 255, 255, 0.4); /* Fondo semi-transparente */
         
-        /* Usamos Lora para los inputs, es muy legible */
-        font-family: 'Lora', serif;
         font-size: 1rem;
         color: var(--color-texto-oscuro);
         box-sizing: border-box;
@@ -142,43 +145,33 @@
         border-color: var(--color-dorado-viejo); /* Resaltado al enfocar */
         background-color: rgba(255, 255, 255, 0.7);
     }
-    
-    /* Pequeño truco para que los placeholders sean serif y claros */
-    input::placeholder {
-        font-family: 'Lora', serif;
-        color: #999;
-        font-style: italic;
-        opacity: 0.8;
-    }
 
-    /* ESTILO DEL BOTÓN - ELEGANTEMENTE REDONDEADADO */
+    /* ESTILO DEL BOTÓN - OTOÑAL Y SUAVE */
     .btn-save {
         width: 100%;
-        padding: 18px 20px; /* Más padding para presencia */
+        padding: 15px;
         cursor: pointer;
+        
+        /* Bordes y esquinas suaves */
         border: 2px solid var(--color-verde-bosque);
-        border-radius: 50px; 
+        border-radius: 50px; /* Botón píldora, muy redondeado */
         
-        /* Ajuste fino tipográfico en Lora para el botón */
-        font-family: 'Lora', serif;
         font-weight: 700;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         text-transform: uppercase;
-        letter-spacing: 2.8px;
+        letter-spacing: 2.5px;
         
+        /* Colores otoño-bosque */
         background-color: var(--color-verde-bosque);
         color: white;
         
         transition: all 0.4s ease;
-        margin-top: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin-top: 10px;
     }
 
     .btn-save:hover {
         background-color: white;
         color: var(--color-verde-bosque);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        transform: translateY(-2px); /* Un pequeño levantamiento */
     }
     
     .btn-save:disabled {
@@ -189,18 +182,18 @@
     /* MENSAJE FINAL - TIPOGRAFÍA SERIF ELEGANTE */
     #mensaje-final {
         display: none;
-        padding: 25px 15px;
+        padding: 20px 10px;
         font-family: 'Playfair Display', serif;
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         font-style: italic;
         color: var(--color-verde-bosque);
         line-height: 1.5;
     }
     
     .sparkle {
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: var(--color-dorado-viejo);
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         display: block;
     }
 
@@ -213,16 +206,17 @@
         .container { 
             padding: 30px 20px;
             
-            /* ¡¡MANTENEMOS TU POSICIONAMIENTO ACTUALIZADO!! 510px */
-            margin-top: 510px; 
+            /* ¡¡MANTENEMOS TU POSICIONAMIENTO!! Ajusta el margin-top para que el formulario se posicione 
+               correctamente debajo del texto del fondo en pantallas de móvil. */
+            margin-top: 510px; /* Mantienes tu valor actualizado de 510px */
             
             margin-bottom: 40px; 
             border-radius: 15px;
         }
-        h1 { font-size: 1.8rem; }
-        label { font-size: 0.75rem; letter-spacing: 1.2px; text-transform: uppercase; }
-        input { padding: 11px; font-size: 0.95rem; }
-        .btn-save { padding: 15px; font-size: 0.85rem; letter-spacing: 2px; }
+        h1 { font-size: 1.7rem; }
+        label { font-size: 0.7rem; letter-spacing: 1.8px; }
+        input { padding: 10px; font-size: 0.95rem; }
+        .btn-save { padding: 13px; font-size: 0.85rem; letter-spacing: 2px; }
     }
 </style>
 </head>
