@@ -16,176 +16,191 @@
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     
 <style>
-        :root {
-            --color-verde: #2d4a41;
-            --color-dorado: #c5a059;
-            --color-crema: rgba(255, 250, 240, 0.75);
-            --color-texto: #333333;
-        }
+    :root {
+        --color-verde: #2d4a41;
+        --color-dorado: #c5a059;
+        --color-crema: rgba(255, 250, 240, 0.75);
+        --color-texto: #333333;
+    }
 
-        /* CONFIGURACIÓN CRÍTICA DEL FONDO Y SCROLL */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            /* overflow: hidden; */ /* ¡¡IMPORTANTE!! ELIMINADO PARA PERMITIR EL SCROLL */
-            background-color: #fdfcf9; 
-        }
+    /* ESTILOS GENERALES Y ELIMINACIÓN DE FLEXBOX */
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        /* overflow: hidden; */ /* Mantenemos el scroll permitido */
+        background-color: #fdfcf9; 
+    }
 
-        body {
-            font-family: 'Lato', sans-serif;
-            display: flex;
-            justify-content: center;
-            /* align-items: flex-end; */ /* ¡¡IMPORTANTE!! CAMBIADO. FLEX-END EMPUJA EL FORMULARIO ABAJO */
-            align-items: center; /* ¡¡NUEVO!! Centrar el formulario en el espacio de scroll */
-            
-            background-image: url('fondo3.png');
-            background-repeat: no-repeat;
-            background-position: top center; /* ¡¡NUEVO!! Anclar la imagen a la parte superior */
-            background-size: cover; /* Mantenemos cover para llenar la pantalla de ancho */
-            background-attachment: fixed;
-            
-            /* ¡¡NUEVO!! Asegurar que el body tenga al menos el alto de la pantalla 
-               para que la imagen se vea siempre, y permita hacer scroll hacia abajo. */
-            min-height: 100vh; 
-        }
+    body {
+        font-family: 'Lato', sans-serif;
+        /* display: flex; */ /* ¡¡IMPORTANTE!! ELIMINADO FLEXBOX DEL BODY */
+        /* justify-content: center; */
+        /* align-items: flex-end; */ 
+    }
 
-        /* CONTENEDOR DEL FORMULARIO - AJUSTADO */
-        .container {
-            background: var(--color-crema);
-            padding: 30px 25px;
-            border-radius: 2px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 85%;
-            max-width: 350px;
-            text-align: center;
-            border: 1px solid var(--color-dorado);
-            position: relative;
-            outline: 8px solid var(--color-crema);
-            outline-offset: -15px;
-            
-            /* ¡¡MODIFICADO!! Usamos márgenes para separar el formulario del texto del fondo. 
-               El margin-top es crítico para "empujarlo" hacia abajo de las letras. */
-            margin-top: 550px; /* ¡¡NUEVO!! Empuja el formulario hacia abajo, pasado el texto de la imagen. Ajusta este valor según la altura de tu fondo y texto. */
-            margin-bottom: 65px; 
-            
-            backdrop-filter: blur(5px);
-            /*-webkit-backdrop-filter: blur(5px);*/
-            box-sizing: border-box;
-        }
+    /* NUEVO ESTILO PARA EL CONTENEDOR PRINCIPAL CON EL FONDO */
+    .main-wrapper {
+        width: 100%;
+        min-height: 100vh; /* Asegura que ocupe al menos el alto de la pantalla */
+        
+        background-image: url('fondo3.png');
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: cover; /* Llenar la pantalla de ancho */
+        
+        /* ¡¡CRÍTICO!! Cambiado de fixed a scroll (por defecto). 
+           Esto hace que el fondo se mueva CON el contenido. */
+        background-attachment: scroll; 
+        
+        display: flex;
+        justify-content: center; /* Centrar el formulario horizontalmente */
+        align-items: flex-start; /* Alinear el formulario al principio (arriba) y usar márgenes */
+        
+        padding-top: 100px; /* Un poco de padding arriba para que no pegue al borde superior de la imagen */
+        box-sizing: border-box;
+    }
 
-        /* ... (Tus h1, label, input, btn-save, mensaje-final iguales) ... */
+    /* CONTENEDOR DEL FORMULARIO - AJUSTADO PARA POSICIONARSE DEBAJO DEL TEXTO */
+    .container {
+        background: var(--color-crema);
+        padding: 30px 25px;
+        border-radius: 2px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        width: 85%;
+        max-width: 350px;
+        text-align: center;
+        border: 1px solid var(--color-dorado);
+        position: relative; /* Mantenemos relative */
+        outline: 8px solid var(--color-crema);
+        outline-offset: -15px;
+        
+        /* ¡¡MODIFICADO!! Usamos un margin-top más pequeño para situarlo debajo del texto del fondo.
+           El margin-top grande de antes era para empujarlo fuera de la pantalla visible inicialmente.
+           Ahora que todo scrollea junto, solo necesitamos separarlo del texto. */
+        margin-top: 550px; /* ¡¡NUEVO!! Ajusta este valor para situar el formulario exactamente debajo de "Fundación a la par...". Prueba valores como 500px, 550px o 600px según la altura real de tu imagen y texto. */
+        margin-bottom: 65px; 
+        
+        backdrop-filter: blur(5px);
+        /*-webkit-backdrop-filter: blur(5px);*/
+        box-sizing: border-box;
+    }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--color-verde);
-            margin-bottom: 5px;
-            font-weight: 400;
-        }
+    /* ... (Tus h1, label, input, btn-save, mensaje-final iguales) ... */
 
-        label {
-            display: block;
-            text-align: center;
-            margin-bottom: 3px;
-            font-weight: 700;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--color-verde);
-        }
+    h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        color: var(--color-verde);
+        margin-bottom: 5px;
+        font-weight: 400;
+    }
 
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 12px;
-            border: none;
-            border-bottom: 1px solid var(--color-dorado);
-            background-color: transparent;
-            font-size: 0.95rem;
-            color: var(--color-texto);
-            text-align: center;
-            box-sizing: border-box;
-        }
+    label {
+        display: block;
+        text-align: center;
+        margin-bottom: 3px;
+        font-weight: 700;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--color-verde);
+    }
 
-        input:focus {
-            outline: none;
-            border-bottom: 1px solid var(--color-verde);
-        }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        border: none;
+        border-bottom: 1px solid var(--color-dorado);
+        background-color: transparent;
+        font-size: 0.95rem;
+        color: var(--color-texto);
+        text-align: center;
+        box-sizing: border-box;
+    }
 
-        .btn-save {
-            width: 100%;
-            padding: 12px;
-            cursor: pointer;
-            border: 1px solid var(--color-verde);
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background-color: var(--color-verde);
-            color: white;
-            transition: all 0.4s ease;
-        }
+    input:focus {
+        outline: none;
+        border-bottom: 1px solid var(--color-verde);
+    }
 
-        .btn-save:hover {
-            background-color: white;
-            color: var(--color-verde);
-        }
+    .btn-save {
+        width: 100%;
+        padding: 12px;
+        cursor: pointer;
+        border: 1px solid var(--color-verde);
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background-color: var(--color-verde);
+        color: white;
+        transition: all 0.4s ease;
+    }
 
-        #mensaje-final {
-            display: none;
-            padding: 10px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--color-verde);
-            line-height: 1.4;
-        }
+    .btn-save:hover {
+        background-color: white;
+        color: var(--color-verde);
+    }
 
-        /* AJUSTES ESPECÍFICOS PARA MÓVIL */
-        @media (max-width: 480px) {
-            body {
-                background-size: cover; 
-                background-position: top center;
-            }
-            .container { 
-                padding: 25px 20px;
-                /* ¡¡NUEVO!! Ajusta el margin-top para que el formulario se posicione 
-                   correctamente debajo del texto del fondo en pantallas de móvil. */
-                margin-top: 480px; 
-                margin-bottom: 30px; 
-            }
-            h1 { font-size: 1.6rem; }
+    #mensaje-final {
+        display: none;
+        padding: 10px;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        font-style: italic;
+        color: var(--color-verde);
+        line-height: 1.4;
+    }
+
+    /* AJUSTES ESPECÍFICOS PARA MÓVIL */
+    @media (max-width: 480px) {
+        /* Ya no necesitamos ajustar el fondo del body aquí */
+        .main-wrapper {
+            background-size: cover; 
+            background-position: top center;
         }
-    </style>
+        .container { 
+            padding: 25px 20px;
+            /* ¡¡NUEVO!! Ajusta el margin-top para que el formulario se posicione 
+               correctamente debajo del texto del fondo en pantallas de móvil. */
+            margin-top: 480px; /* Prueba valores como 450px o 480px para móvil */
+            margin-bottom: 30px; 
+        }
+        h1 { font-size: 1.6rem; }
+    }
+</style>
 </head>
 <body>
 
-<div class="container" id="main-container">
-    <div id="formulario-boda">
-        <label for="nombreInput">Nombre</label>
-        <input type="text" id="nombreInput" placeholder="Tu nombre">
+<div class="main-wrapper"> <div class="container" id="main-container">
+        <div id="formulario-boda">
+            <label for="nombreInput">Nombre</label>
+            <input type="text" id="nombreInput" placeholder="Tu nombre">
 
-        <label for="apellidoInput">Apellidos</label>
-        <input type="text" id="apellidoInput" placeholder="Tus apellidos">
+            <label for="apellidoInput">Apellidos</label>
+            <input type="text" id="apellidoInput" placeholder="Tus apellidos">
 
-        <label for="numInput">Acompañantes</label>
-        <input type="number" id="numInput" value="0" min="0">
+            <label for="numInput">Acompañantes</label>
+            <input type="number" id="numInput" value="0" min="0">
 
-        <label for="alergiaInput">¿Alergias?</label>
-        <input type="text" id="alergiaInput" placeholder="Indícalo aquí">
+            <label for="alergiaInput">¿Alergias?</label>
+            <input type="text" id="alergiaInput" placeholder="Indícalo aquí">
 
-        <button class="btn-save" id="btnEnviar" onclick="guardarRegistro()">Confirmar Asistencia</button>
+            <button class="btn-save" id="btnEnviar" onclick="guardarRegistro()">Confirmar Asistencia</button>
+        </div>
+
+        <div id="mensaje-final">
+            ✨ <br>
+            <b>¡Confirmación enviada!</b><br>
+            Muchas gracias por acompañarnos.<br>
+            <br>
+            <span style="font-size: 1rem; color: var(--color-dorado);">Ainhoa & Víctor</span>
+        </div>
     </div>
 
-    <div id="mensaje-final">
-        ✨ <br>
-        <b>¡Confirmación enviada!</b><br>
-        Muchas gracias por acompañarnos.<br>
-        <br>
-        <span style="font-size: 1rem; color: var(--color-dorado);">Ainhoa & Víctor</span>
-    </div>
 </div>
 
 <script>
