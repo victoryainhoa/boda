@@ -18,13 +18,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
 <style>
-    /* DEFINICIÓN DE VARIABLES OTOÑALES */
+    /* DEFINICIÓN DE VARIABLES OTOÑALES Y ELEGANTES */
     :root {
         --color-verde-bosque: #2d4a41;
         --color-dorado-viejo: #c5a059;
         
         /* Ocre semi-transparente para el fondo del formulario */
-        --color-fondo-formulario: rgba(139, 108, 66, 0.4); 
+        --color-fondo-formulario: rgba(139, 108, 66, 0.45); 
         
         --color-texto-oscuro: #333333;
         --color-crema-suave: #fffcf4;
@@ -36,14 +36,14 @@
         padding: 0;
         width: 100%;
         height: 100%;
-        /* overflow: hidden; */
+        /* overflow: hidden; */ /* Mantenemos el scroll permitido */
         background-color: #fdfcf9; 
     }
 
     body {
-        /* ¡¡NUEVA FUENTE!! Lora para el cuerpo del formulario */
+        /* ¡¡ELEGANCIA!! Lora para el cuerpo del formulario */
         font-family: 'Lora', serif; 
-        line-height: 1.6;
+        line-height: 1.5; /* Un poco menos para compactar */
         color: var(--color-texto-oscuro);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -68,23 +68,36 @@
         box-sizing: border-box;
     }
 
-    /* CONTENEDOR DEL FORMULARIO - OTOÑAL Y SUAVE */
+    /* CONTENEDOR DEL FORMULARIO - REDISEÑADO COMPACTO Y PEQUEÑO */
     .container {
         background: var(--color-fondo-formulario);
         
-        padding: 40px 35px; /* Un poco más de padding */
-        border-radius: 20px; 
+        /* ¡¡REDUCCIÓN DRÁSTICA!! Padding interno compacto */
+        padding: 20px 18px; 
         
-        box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
-        width: 90%;
-        max-width: 400px; /* Un poco más ancho */
+        border-radius: 15px; /* Esquinas suaves, no exageradas */
+        
+        box-shadow: 0 10px 25px rgba(0,0,0,0.12); /* Sombra más sutil */
+        
+        /* ¡¡REDUCCIÓN DRÁSTICA!! Anchura mucho más estrecha */
+        width: 80%; 
+        max-width: 320px; 
+        
         text-align: center;
-        border: 1px solid rgba(197, 160, 89, 0.5); 
+        border: 1px solid rgba(197, 160, 89, 0.4); 
         position: relative; 
         
-        margin-top: 550px; /* Ajusta este valor para situar el formulario exactamente debajo del texto del fondo */
-        margin-bottom: 70px; 
+        /* Eliminamos la outline decorativa dura */
+        /* outline: 8px solid var(--color-crema); */
+        /* outline-offset: -15px; */
         
+        /* ¡¡REDUCCIÓN CRÍTICA!! Ajustamos margin-top para que se sitúe 
+           perfectamente DEBAJO de "Fundación a la par...". Prueba valores como 
+           420px, 430px o 440px según la altura real de tu imagen y texto. */
+        margin-top: 430px; 
+        margin-bottom: 60px; 
+        
+        /* Efecto de cristal difuminado */
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         box-sizing: border-box;
@@ -94,28 +107,28 @@
     h1 {
         /* Usamos Playfair Display para títulos */
         font-family: 'Playfair Display', serif;
-        font-size: 2.1rem; /* Un poco más grande y distinguida */
+        font-size: 1.8rem; /* Reducido para compactar */
         color: var(--color-verde-bosque);
         margin-top: 0;
-        margin-bottom: 30px;
+        margin-bottom: 15px; /* Reducido */
         font-weight: 700;
         line-height: 1.1;
     }
 
-    /* ESTILOS DE FORMULARIO - ELEGANTES Y LEGIBLES */
+    /* ESTILOS DE FORMULARIO - COMPACTOS Y LEGIBLES */
     .form-group {
-        margin-bottom: 22px;
-        text-align: left; /* Etiquetas a la izquierda para mejor legibilidad con serif */
+        margin-bottom: 10px; /* ¡¡REDUCCIÓN DRÁSTICA!! Grupos más juntos */
+        text-align: left; 
     }
 
     label {
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 2px; /* ¡¡REDUCCIÓN DRÁSTICA!! Pegado a la text box */
         font-weight: 700;
         
-        /* Ajustamos para Lora: un poco menos mayúscula dura y más refinada */
-        font-size: 0.8rem; 
-        text-transform: capitalize; /* Cambiado a Capitalize para más elegancia */
+        /* Lora refinada para etiquetas */
+        font-size: 0.75rem; /* Un poco más pequeña */
+        text-transform: capitalize; 
         letter-spacing: 1px;
         
         color: var(--color-verde-bosque);
@@ -123,15 +136,15 @@
 
     input {
         width: 100%;
-        padding: 13px 15px; /* Más padding */
+        padding: 7px 10px; /* ¡¡REDUCCIÓN DRÁSTICA!! Text box más delgada */
         
-        border: 1px solid rgba(0,0,0,0.08); /* Borde sutil */
-        border-radius: 8px; 
-        background-color: rgba(255, 255, 255, 0.4); 
+        border: 1px solid rgba(0,0,0,0.06); /* Borde sutilísimo */
+        border-radius: 6px; 
+        background-color: rgba(255, 255, 255, 0.3); 
         
-        /* Usamos Lora para los inputs, es muy legible */
+        /* Lora para los inputs */
         font-family: 'Lora', serif;
-        font-size: 1rem;
+        font-size: 0.95rem; /* Reducido */
         color: var(--color-texto-oscuro);
         box-sizing: border-box;
         transition: all 0.3s ease;
@@ -139,11 +152,11 @@
 
     input:focus {
         outline: none;
-        border-color: var(--color-dorado-viejo); /* Resaltado al enfocar */
-        background-color: rgba(255, 255, 255, 0.7);
+        border-color: var(--color-dorado-viejo); 
+        background-color: rgba(255, 255, 255, 0.6);
     }
     
-    /* Pequeño truco para que los placeholders sean serif y claros */
+    /* Placeholders en Lora, sutiles */
     input::placeholder {
         font-family: 'Lora', serif;
         color: #999;
@@ -151,34 +164,34 @@
         opacity: 0.8;
     }
 
-    /* ESTILO DEL BOTÓN - ELEGANTEMENTE REDONDEADADO */
+    /* ESTILO DEL BOTÓN - ELEGANTEMENTE REDONDEADADO Y COMPACTO */
     .btn-save {
         width: 100%;
-        padding: 18px 20px; /* Más padding para presencia */
+        padding: 11px 15px; /* ¡¡REDUCCIÓN DRÁSTICA!! Botón más compacto */
         cursor: pointer;
-        border: 2px solid var(--color-verde-bosque);
-        border-radius: 50px; 
+        border: 1.5px solid var(--color-verde-bosque);
+        border-radius: 40px; 
         
-        /* Ajuste fino tipográfico en Lora para el botón */
+        /* Lora para el botón, elegante */
         font-family: 'Lora', serif;
         font-weight: 700;
-        font-size: 0.95rem;
+        font-size: 0.85rem; /* Reducido */
         text-transform: uppercase;
-        letter-spacing: 2.8px;
+        letter-spacing: 2px; /* Reducido */
         
         background-color: var(--color-verde-bosque);
         color: white;
         
         transition: all 0.4s ease;
-        margin-top: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin-top: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
     .btn-save:hover {
         background-color: white;
         color: var(--color-verde-bosque);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        transform: translateY(-2px); /* Un pequeño levantamiento */
+        box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        transform: translateY(-1px);
     }
     
     .btn-save:disabled {
@@ -186,21 +199,21 @@
         cursor: not-allowed;
     }
 
-    /* MENSAJE FINAL - TIPOGRAFÍA SERIF ELEGANTE */
+    /* MENSAJE FINAL - TIPOGRAFÍA SERIF ELEGANTE Y COMPACTA */
     #mensaje-final {
         display: none;
-        padding: 25px 15px;
+        padding: 15px 10px; /* Reducido */
         font-family: 'Playfair Display', serif;
-        font-size: 1.4rem;
+        font-size: 1.25rem; /* Reducido */
         font-style: italic;
         color: var(--color-verde-bosque);
-        line-height: 1.5;
+        line-height: 1.4;
     }
     
     .sparkle {
-        font-size: 2rem;
+        font-size: 1.6rem;
         color: var(--color-dorado-viejo);
-        margin-bottom: 12px;
+        margin-bottom: 8px;
         display: block;
     }
 
@@ -211,18 +224,19 @@
             background-position: top center;
         }
         .container { 
-            padding: 30px 20px;
+            padding: 20px 15px; /* Aún más compacto en móvil */
             
-            /* ¡¡MANTENEMOS TU POSICIONAMIENTO ACTUALIZADO!! 510px */
-            margin-top: 510px; 
+            /* ¡¡MANTENEMOS TU POSICIONAMIENTO COMPACTO!! 420px */
+            margin-top: 420px; 
             
-            margin-bottom: 40px; 
-            border-radius: 15px;
+            margin-bottom: 30px; 
+            border-radius: 12px;
+            width: 85%;
         }
-        h1 { font-size: 1.8rem; }
-        label { font-size: 0.75rem; letter-spacing: 1.2px; text-transform: uppercase; }
-        input { padding: 11px; font-size: 0.95rem; }
-        .btn-save { padding: 15px; font-size: 0.85rem; letter-spacing: 2px; }
+        h1 { font-size: 1.6rem; }
+        label { font-size: 0.7rem; letter-spacing: 1px; }
+        input { padding: 6px 8px; font-size: 0.9rem; }
+        .btn-save { padding: 10px; font-size: 0.8rem; letter-spacing: 1.5px; }
     }
 </style>
 </head>
